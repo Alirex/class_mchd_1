@@ -1,0 +1,161 @@
+[project]
+name = "class-mchd-1"
+version = "0.1.0"
+description = "Example project for MCHD 1"
+requires-python = ">=3.14.3"
+dependencies = [
+    # region main
+    "jupyter>=1.1.1",
+    # endregion main
+]
+
+[build-system]
+requires = ["uv_build>=0.10.4,<0.11.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    # region typing
+    # Static type checker
+    "mypy>=1.19.1",
+    # endregion typing
+    # region linting
+    # Pre-commit runner
+    "prek>=0.3.3",
+    # Main linter/formatter
+    "ruff>=0.15.1",
+    # Extra checker. Used by Zed. Also check "match/case exhaustiveness".
+    "basedpyright>=1.38.1",
+    # endregion linting
+    #
+    # region task
+    # Task runner
+    "rust-just>=1.46.0",
+    # endregion task
+    #
+    # region extra_code_quality
+    # Dead code checker
+    "vulture>=2.14",
+    # Code complexity checker
+    "radon>=6.0.1",
+    # endregion extra_code_quality
+]
+
+[tool.pytest.ini_options]
+adopts = "--strict-markers"
+
+[tool.mypy]
+plugins = [
+    # "pydantic.mypy",
+]
+
+strict = true
+
+[tool.ruff]
+line-length = 120
+fix = true
+unsafe-fixes = true
+show-fixes = true
+
+extend-exclude = [
+]
+
+[tool.ruff.lint]
+extend-select = [
+    "ALL",
+]
+extend-ignore = [
+    # Missing docstring.
+    "D1",
+    # flake8-future-annotations.
+    "FA",
+    # Missing type annotation for self and cls.
+    "ANN1",
+    # f-strings to format logging messages.
+    "G004",
+    # Consider {expression} instead of string join.
+    "FLY002",
+    # TODOs
+    # Author.
+    "TD002",
+    # Link to issue
+    "TD003",
+    # Line contains a TODO or related comment
+    "FIX",
+    # Args and kwargs are not used and not annotated
+    "ANN002",
+    "ANN003",
+    #
+    "ERA001", # Commented code
+    #
+    "PLR2044", # Line with empty comment
+    #
+    "T201", # print statement. Don't remove in this app, because it's Proof of Concept.
+    #
+    # TYPE_CHECK
+    "TC001",
+    "TC002",
+    "TC003",
+]
+
+task-tags = [
+    "TODO",
+    "FIXME",
+    "HACK",
+    "XXX",
+    "[",
+]
+
+[tool.ruff.lint.flake8-builtins]
+builtins-allowed-modules = [
+    "typing",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+# https://betterprogramming.pub/3-different-docstring-formats-for-python-d27be81e0d68
+
+[tool.ruff.lint.flake8-comprehensions]
+allow-dict-calls-with-keyword-arguments = true
+
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = [
+    # Unused import.
+    "F401",
+]
+
+"test_*.py" = [
+    # Allow `assert` statements in tests.
+    "S101",
+]
+
+[tool.ruff.lint.flake8-type-checking]
+runtime-evaluated-base-classes = [
+    "pydantic.BaseModel",
+]
+runtime-evaluated-decorators = [
+    "pydantic.validate_call",
+    "app.command",
+]
+
+[tool.basedpyright]
+# Rules: Use all in "error" level.
+#   Please change non-critical rules to "warning" or disable them explicitly below.
+typeCheckingMode = "all"
+
+# [disable_explicit]-[BEGIN]
+# We don't need this.
+reportImplicitStringConcatenation = false
+# [disable_explicit]-[END]
+
+# [temporarily_lower_the_level]-[BEGIN]
+# Temporarily lower the level of some rules to "warning" to reduce noise.
+
+# `Any` usage reporting.
+reportAny = "warning" # Hard to control for now.
+reportExplicitAny = true # But keep this enabled.
+
+reportUnannotatedClassAttribute = "warning" # Maybe don't need it now.
+reportUnsafeMultipleInheritance = "warning" # Hard to control for now.
+# [temporarily_lower_the_level]-[END]
