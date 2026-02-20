@@ -4,4 +4,10 @@
     <option name="sdkName" value="uv (class_mchd_1)" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="uv (class_mchd_1)" project-jdk-type="Python SDK" />
+  <component name="PyrightConfiguration">
+    <option name="enabled" value="true" />
+  </component>
+  <component name="RuffConfiguration">
+    <option name="enabled" value="true" />
+  </component>
 </project>
