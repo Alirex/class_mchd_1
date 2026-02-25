@@ -5,8 +5,14 @@ description = "Example project for MCHD 1"
 requires-python = ">=3.14.3"
 dependencies = [
     # region main
+    # For cell-execution in Jupyter Notebook.
     "jupyter>=1.1.1",
     # endregion main
+    #
+    # region extra
+    # Datetime utilities.
+    "python-dateutil>=2.9.0.post0",
+    # endregion extra
 ]
 
 [build-system]
@@ -18,12 +24,14 @@ dev = [
     # region typing
     # Static type checker
     "mypy>=1.19.1",
+    # Types
+    "types-python-dateutil>=2.9.0.20260124",
     # endregion typing
     # region linting
     # Pre-commit runner
     "prek>=0.3.3",
     # Main linter/formatter
-    "ruff>=0.15.1",
+    "ruff>=0.15.2",
     # Extra checker. Used by Zed. Also check "match/case exhaustiveness".
     "basedpyright>=1.38.1",
     # endregion linting
