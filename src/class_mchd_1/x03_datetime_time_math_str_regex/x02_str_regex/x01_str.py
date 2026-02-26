@@ -28,7 +28,8 @@ def example_str() -> None:
     if "World" in s:
         print("Found 'World' in the string.")
 
-    # Special characters
+    # region special_characters
+    # sourcery skip: extract-duplicate-method, inline-variable
     s_with_newline = "Hello,\nWorld!"
     print(s_with_newline)
 
@@ -44,9 +45,10 @@ def example_str() -> None:
     s_with_unicode = "Unicode example: \u03a9"  # Omega symbol
     print(s_with_unicode)
 
-    # ❤️
+    # emoji: ❤️
     s_with_emoji = "I love Python! ❤️"
     print(s_with_emoji)
+    # endregion special_characters
 
 
 def main() -> None:
