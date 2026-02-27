@@ -11,6 +11,7 @@ dependencies = [
     #
     # region extra
     # Datetime utilities.
+    "pydantic>=2.12.5",
     "python-dateutil>=2.9.0.post0",
     # endregion extra
 ]
@@ -27,13 +28,19 @@ dev = [
     # Types
     "types-python-dateutil>=2.9.0.20260124",
     # endregion typing
+    #
+    # region testing
+    # Testing framework
+    "pytest>=9.0.2",
+    # endregion testing
+    #
     # region linting
     # Pre-commit runner
     "prek>=0.3.3",
     # Main linter/formatter
-    "ruff>=0.15.2",
+    "ruff>=0.15.4",
     # Extra checker. Used by Zed. Also check "match/case exhaustiveness".
-    "basedpyright>=1.38.1",
+    "basedpyright>=1.38.2",
     # endregion linting
     #
     # region task
@@ -50,7 +57,7 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-adopts = "--strict-markers"
+addopts = "--strict-markers"
 
 [tool.mypy]
 plugins = [
